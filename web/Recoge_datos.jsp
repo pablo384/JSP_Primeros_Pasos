@@ -20,12 +20,19 @@
     String contra=request.getParameter("contra");
     String pais=request.getParameter("pais");
     String tecnologia=request.getParameter("tecnologias");
-    Connection miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_jsp","root","");
-    Statement miStatement = miConexion.createStatement();
-    String instruccionSQL="INSERT INTO USUARIOS (Nombre, Apellido, Usuario, Contrasena, Pais, Tecnologia) VALUES ('"+nombre+"','"+apellido+"','"+usuario+"','"+contra+"','"+pais+"','"+tecnologia+"')";
-    miStatement.executeUpdate(instruccionSQL);
+    Class.forName("com.mysql.jdbc.Driver");
 
-    out.println("Registrado con exito");
+    try {
+        Connection miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_jsp", "root", "");
+        Statement miStatement = miConexion.createStatement();
+        String instruccionSQL = "INSERT INTO USUARIOS (Nombre, Apellido, Usuario, Contrasena, Pais, Tecnologia) VALUES ('" + nombre + "','" + apellido + "','" + usuario + "','" + contra + "','" + pais + "','" + tecnologia + "')";
+        miStatement.executeUpdate(instruccionSQL);
+
+        out.println("Registrado con exito");
+    }catch (Exception e){
+        e.printStackTrace();
+        out.println("A habido un Error");
+    }
 %>
 </body>
 </html>
