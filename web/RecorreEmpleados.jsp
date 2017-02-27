@@ -38,12 +38,20 @@
 <html>
 <head>
     <title>Empleados</title>
+    <style>
+        .cabecera{
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-
+<table border="1">
+<tr class="cabecera"><td>Nombre</td><td>Apellido</td><td>Puesto</td><td>Salario</td></tr>
 <c:forEach var="empTm" items="${losEmpleados}">
-    ${empTm.nombre} ${empTm.apellido} ${empTm.puesto} ${empTm.salario} <br>
+    <tr>
+        <td>${empTm.nombre}</td> <td>${empTm.apellido}</td> <td>${empTm.puesto}</td> <td>${empTm.salario}</td>
+    </tr>
 </c:forEach>
-
+</table>
 </body>
 </html>
