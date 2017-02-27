@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: pablo
   Date: 27/2/2017
@@ -11,7 +12,7 @@
     <title>Lista de la compra</title>
 </head>
 <body>
-<form name="Formulario_Compra" action="Lista_Compra.jsp">
+<form name="Formulario_Compra" action="Lista_Compra.jsp" method="post">
 
     <p>Artículos a comprar:</p>
     <p>
@@ -48,12 +49,25 @@
 
 <ul>
 <%
+    List<String> listaElementos= (List<String>) session.getAttribute("misElementos");
+
+    if (listaElementos==null){
+        listaElementos=new ArrayList<String>();
+        session.setAttribute("misElementos", listaElementos);
+
+    }
+
+
     String[] elementos=request.getParameterValues("articulos");
 
     if (elementos!=null){
         for (String el:elementos){
-            out.println("<li>"+el+"</li>");
+            //out.println("<li>"+el+"</li>");
+            listaElementos.add(el);
         }
+    }
+    for (String elt:listaElementos){
+        out.println("<li>"+elt+"</li>");
     }
 
 %>
