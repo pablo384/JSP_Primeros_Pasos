@@ -52,12 +52,23 @@
         <td>${empTm.nombre}</td> <td>${empTm.apellido}</td> <td>${empTm.puesto}</td>
         <td>
 
-            <c:if test="${empTm.salario<3000}">
-                ${empTm.salario+5000}
-            </c:if>
-            <c:if test="${empTm.salario>3000}">
-                ${empTm.salario}
-            </c:if>
+            <c:choose>
+                <c:when test="${empTm.salario<40000}">
+                    ${empTm.salario+5000}
+                </c:when>
+                <c:when test="${empTm.salario<40000 && empTm.salario<=50000}">
+                    ${empTm.salario+2000}
+                </c:when>
+                <c:otherwise>
+                    ${empTm.salario}
+                </c:otherwise>
+            </c:choose>
+            <%--<c:if test="${empTm.salario<3000}">--%>
+                <%--${empTm.salario+5000}--%>
+            <%--</c:if>--%>
+            <%--<c:if test="${empTm.salario>3000}">--%>
+                <%--${empTm.salario}--%>
+            <%--</c:if>--%>
 
 
         </td>
